@@ -1,0 +1,13 @@
+{
+	"name": "bea/bea-manage-theme-plugins",
+	"description": "Dev oriented plugin to manage theme's plugins on activation and deactivation by forcing or suggesting it.",
+	"minimum-stability": "stable",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "BeAPI",
+			"email": "technique@beapi.fr"
+		}
+	],
+	"type" : "wordpress-muplugin"
+}
