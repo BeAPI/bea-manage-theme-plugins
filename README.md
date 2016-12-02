@@ -70,14 +70,12 @@ function manage_my_theme_plugins( $plugins ) {
 
 # Changelog ##
 
-## 1.0.1
-* 02 Dec 2016
+## 1.0.1 - 02 Dec 2016
 * Implement main methods to register/deregister theme's plugins depending in if it's forced or suggested.
 * Update readme with usage & example.
 * Add plugin's .pot.
 * Add French translation (po/mo).
 * Add composer.json !
 
-## 1.0.0
-* 02 Dec 2016
+## 1.0.0 - 02 Dec 2016
 * Init with boilerplate 2.1.6
