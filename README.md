@@ -37,7 +37,7 @@ Available actions are :
 - force_deactivation
 - suggest_deactivation
 
-## Exemple
+## Example
 
 ```
 <?php
