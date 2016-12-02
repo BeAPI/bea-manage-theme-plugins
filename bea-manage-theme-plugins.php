@@ -3,10 +3,10 @@
  Plugin Name: BEA - Manage theme plugins
  Version: 1.0.1
  Version Boilerplate: 2.1.6
- Plugin URI: http://www.beapi.fr
- Description: Dev oriented plugin to manage theme's plugins on activation and deactivation by forcing or suggesting it.
+ Plugin URI: https://beapi.fr/
+ Description: Dev oriented plugin to manage theme's plugins (activation and deactivation) by forcing or suggesting it.
  Author: BE API Technical team
- Author URI: http://www.beapi.fr
+ Author URI: https://beapi.fr/
  Domain Path: languages
  Text Domain: bea-manage-theme-plugins
 
@@ -59,10 +59,6 @@ if ( version_compare( PHP_VERSION, BEA_MANAGE_THEME_PLUGINS_MIN_PHP_VERSION, '<'
  * Autoload all the things \o/
  */
 require_once BEA_MANAGE_THEME_PLUGINS_DIR . 'autoload.php';
-
-// Plugin activate/deactive hooks
-register_activation_hook( __FILE__, array( '\BEA\Manage_Theme_Plugins\Plugin', 'activate' ) );
-register_deactivation_hook( __FILE__, array( '\BEA\Manage_Theme_Plugins\Plugin', 'deactivate' ) );
 
 add_action( 'plugins_loaded', 'init_bea_manage_theme_plugins_plugin' );
 /**
