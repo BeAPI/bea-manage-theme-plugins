@@ -9,14 +9,16 @@ Dev oriented plugin to manage theme's plugins on activation and deactivation by 
 In your theme's functions.php file, hook on `bea\manage_theme_plugins\theme_plugins` to manage theme's plugins dependencies.
 
 Here is an example of how theme's plugins array is formatted :
+```
 $theme_plugins = array(
      $action1 = array(
          plugin-folder1/plugin1.php,
          plugin-folder2/plugin2.php
      )
 );
+```
 
-Actions are :
+Available actions are :
 - force_activation
 - suggest_activation
 - force_deactivation
@@ -54,6 +56,13 @@ function manage_my_theme_plugins( $plugins ) {
 
 
 ## Changelog ##
+
+### 1.0.1
+* 02 Dec 2016
+* Implement main methods to register/deregister theme's plugins depending in if it's forced or suggested.
+* Update readme with usage & example.
+* Add plugin's .pot.
+* Add French translation (po/mo).
 
 ### 1.0.0
 * 02 Dec 2016
