@@ -6,6 +6,8 @@ Dev oriented plugin to manage theme's plugins on activation and deactivation by 
 
 ## Important to know ##
 
+### Nothing yet
+
 ## Changelog ##
 
 ### 1.0.0
