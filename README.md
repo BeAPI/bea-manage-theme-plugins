@@ -55,7 +55,7 @@ function manage_my_theme_plugins( $plugins ) {
 			'wp-pagenavi/wp-pagenavi.php',
 			'wordpress-seo/wp-seo.php'
 		),
-		'force_activation'     => array(
+		'force_deactivation'     => array(
 			'image-widget/image-widget.php'
 		),
 		'suggest_deactivation' => array(
