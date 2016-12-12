@@ -67,8 +67,25 @@ function manage_my_theme_plugins( $plugins ) {
 }
 ```
 
+## WP-Cli
+
+### Single site management
+
+Will exec only on given site, the theme's plugins management.
+
+`wp plugins manage_single --url={site_url}`
+
+### All sites management
+
+Will exec on all sites, the theme's plugins management.
+
+`wp plugins manage_multiple`
 
 # Changelog ##
+
+## 1.1.0 - 12 Dec 2016
+* Add wp cli to single or multiple management.
+* Update WP warnings messages.
 
 ## 1.0.1 - 02 Dec 2016
 * Implement main methods to register/deregister theme's plugins depending in if it's forced or suggested.
