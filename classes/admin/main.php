@@ -26,6 +26,8 @@ class Main {
 	 *
 	 * @since 1.0.1
 	 *
+	 * @return array, Plugins to be managed
+	 *
 	 * @author Benjamin Niess
 	 * @author Maxime CULEA
 	 */
@@ -43,7 +45,7 @@ class Main {
 		 * @since 1.0.1
 		 *
 		 * @return array $theme_plugins List of actions to perform and corresponding wanted plugins.
-		 * 
+		 *
 		 * Here is an example of how is array formatted :
 		 * $theme_plugins = array(
 		 *      $action1 = array(
@@ -60,7 +62,7 @@ class Main {
 		 */
 		$theme_plugins = apply_filters( 'bea\manage_theme_plugins\theme_plugins', array() );
 		if ( ! is_array( $theme_plugins ) || empty( $theme_plugins ) ) {
-			return;
+			return array();
 		}
 
 		// Init the return array (the array with all infos about plugins enabled or disabled by the function)
@@ -124,11 +126,11 @@ class Main {
 
 		update_option( 'active_plugins', $active_plugins );
 
-		if ( empty( $log_infos ) ) {
-			return;
+		if ( ! empty( $log_infos ) && ! defined( 'WP_CLI' ) ) {
+			self::$logs_messages = $log_infos;
 		}
 
-		self::$logs_messages = $log_infos;
+		return $active_plugins;
 	}
 
 	/**
