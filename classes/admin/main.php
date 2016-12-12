@@ -65,6 +65,11 @@ class Main {
 			return array();
 		}
 
+		// Early exit to return to wp cli all wanted plugins
+		if ( defined( 'WP_CLI' ) ) {
+			return $theme_plugins;
+		}
+
 		// Init the return array (the array with all infos about plugins enabled or disabled by the function)
 		$log_infos = array(
 			"force_activation"     => array(),
@@ -129,10 +134,11 @@ class Main {
 		/**
 		 * Force activation to exec activation hooks
 		 * Not too greedy, as it checks option before activation
+		 * And only on differenceies between news one and old one
 		 */
 		activate_plugins( $active_plugins );
 
-		if ( ! empty( $log_infos ) && ! defined( 'WP_CLI' ) ) {
+		if ( ! empty( $log_infos ) ) {
 			self::$logs_messages = $log_infos;
 		}
 
