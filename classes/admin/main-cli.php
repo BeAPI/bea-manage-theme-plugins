@@ -35,7 +35,7 @@ class Main_CLI extends \WP_CLI_Command {
 
 		\WP_Cli::log( 'Starting theme\'s plugins management.' );
 		foreach ( $sites as $site ) {
-			\WP_CLI::runcommand( 'plugins manage_single --url=' . $site->domain . $site->path );
+			\WP_CLI::runcommand( 'plugins manage_single --url=' . $site->domain . $site->path, array( 'return' => true ) );
 		}
 
 		\WP_CLI::success( sprintf( 'Management of %s site(s) is finish !', $found_sites ) );
@@ -57,18 +57,17 @@ class Main_CLI extends \WP_CLI_Command {
 		$main    = Main::get_instance();
 		$plugins = $main->check_plugins();
 
-
 		if ( isset( $plugins['force_activation'] ) && ! empty( $plugins['force_activation'] ) ) {
 			foreach ( $plugins['force_activation'] as $plugin ) {
 				$path = explode( $plugin, '/' );
-				\WP_CLI::runcommand( sprintf( 'plugin activate %s --url=%s%s%s', $path[0], $site->domain, $site->path, is_network_only_plugin( $plugin ) ? ' --network' : '' ) );
+				\WP_CLI::runcommand( sprintf( 'plugin activate %s --url=%s%s%s', $path[0] ), array( 'return' => true ) );
 			}
 		}
 
 		if ( isset( $plugins['force_deactivation'] ) && ! empty( $plugins['force_deactivation'] ) ) {
 			foreach ( $plugins['force_deactivation'] as $plugin ) {
 				$path = explode( $plugin, '/' );
-				\WP_CLI::runcommand( sprintf( 'plugin deactivate %s --url=%s%s%s', $path[0], $site->domain, $site->path, is_network_only_plugin( $plugin ) ? ' --network' : '' ) );
+				\WP_CLI::runcommand( sprintf( 'plugin deactivate %s --url=%s%s', $path[0] ), array( 'return' => true ) );
 			}
 		}
 	}
