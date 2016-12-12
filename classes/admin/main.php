@@ -72,11 +72,11 @@ class Main {
 
 		// Init the return array (the array with all infos about plugins enabled or disabled by the function)
 		$log_infos = array(
-			"force_activation"     => array(),
-			"force_deactivation"   => array(),
-			"suggest_activation"   => array(),
-			"suggest_deactivation" => array(),
-			"doesntexists"         => array()
+			'force_activation'     => array(),
+			'force_deactivation'   => array(),
+			'suggest_activation'   => array(),
+			'suggest_deactivation' => array(),
+			'doesntexists'         => array(),
 		);
 
 		// Scan plugins
@@ -154,6 +154,10 @@ class Main {
 	 * @author Maxime CULEA
 	 */
 	public function show_notices() {
+		if ( ! current_user_can( 'manage_plugins' ) ) {
+			return;
+		}
+
 		// Don't show message on other screens than plugins
 		$current_screen = get_current_screen();
 		if ( empty( $current_screen ) || ! is_object( $current_screen ) || ! isset( $current_screen->base ) || $current_screen->base != 'plugins' ) {
@@ -163,6 +167,8 @@ class Main {
 		if ( empty( self::$logs_messages ) || ! is_array( self::$logs_messages ) ) {
 			return;
 		}
+
+		// TODO : Improve code quality with messages
 
 		// Display errors with required plugins that are not installed
 		if ( isset( self::$logs_messages['doesntexists'] ) && is_array( self::$logs_messages['doesntexists'] ) ) {
