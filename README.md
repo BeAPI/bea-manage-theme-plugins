@@ -79,7 +79,7 @@ Will exec only on given site, the theme's plugins management.
 
 Will exec on all sites, the theme's plugins management.
 
-`wp plugins manage_multiple`
+`wp plugins manage_all`
 
 # Changelog ##
 
