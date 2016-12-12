@@ -4,9 +4,13 @@ class Main_CLI extends \WP_CLI_Command {
 
 	/**
 	 * Activate/Deactive foreach site, theme's dependencies.
-	 **
+	 *
 	 * ## EXAMPLES
-	 * wp plugins manage_all --url=
+	 * wp plugins manage_all
+	 *
+	 * @since 1.1.0
+	 *
+	 * @author Maxime CULEA
 	 *
 	 * @synopsis
 	 */
@@ -43,9 +47,13 @@ class Main_CLI extends \WP_CLI_Command {
 
 	/**
 	 * Activate/Deactive foreach site, theme's dependencies.
-	 **
+	 *
 	 * ## EXAMPLES
 	 * wp plugins manage_single --url=
+	 *
+	 * @since 1.1.0
+	 *
+	 * @author Maxime CULEA
 	 *
 	 * @synopsis
 	 */
