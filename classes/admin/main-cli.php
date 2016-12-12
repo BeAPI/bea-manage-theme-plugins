@@ -36,7 +36,7 @@ class Main_CLI extends \WP_CLI_Command {
 			return;
 		}
 
-		\WP_Cli::log( 'Starting theme\'s plugins management.' );
+		\WP_CLI::log( 'Starting theme\'s plugins management.' );
 		foreach ( $sites as $site ) {
 			\WP_CLI::log( \WP_CLI::runcommand( sprintf( 'plugins manage_single --url=%s%s', $site->domain, $site->path ), array( 'return' => true ) ) );
 		}
@@ -64,38 +64,38 @@ class Main_CLI extends \WP_CLI_Command {
 		$main    = Main::get_instance();
 		$plugins = $main->check_plugins();
 
-		if ( isset( $plugins['force_activation'] ) && ! empty( $plugins['force_activation'] ) ) {
-			foreach ( $plugins['force_activation'] as $plugin ) {
-				$path   = explode( '/', $plugin );
-				$return = \WP_CLI::runcommand(
-					sprintf( 'plugin activate %s --url=%s%s', $path[0], $site->domain, $site->path ),
-					array( 'return' => true, 'exit_error' => false )
-				);
+		self::activate_deactivate( 'activate', 'force_activation', $plugins, $site );
+		self::activate_deactivate( 'deactivate', 'force_deactivation', $plugins, $site );
+	}
 
-				\WP_CLI::log( sprintf( '%s : %s', $path[0], $return ) );
-
-				/** This actions are documented in wp-admin/includes/plugin.php */
-				do_action( 'activate_plugin', $plugin, false );
-				do_action( 'activate_' . $plugin, false );
-				do_action( 'activated_plugin', $plugin, false );
-			}
+	/**
+	 * Private method for activation / deactivation the given plugins
+	 *
+	 * @param $action
+	 * @param $key
+	 * @param $plugins
+	 * @param $site
+	 *
+	 * @author Maxime CULEA
+	 */
+	private function activate_deactivate( $action, $key, $plugins, $site ) {
+		if ( ! isset( $plugins[$key] ) || empty( $plugins[$key] ) ) {
+			return;
 		}
 
-		if ( isset( $plugins['force_deactivation'] ) && ! empty( $plugins['force_deactivation'] ) ) {
-			foreach ( $plugins['force_deactivation'] as $plugin ) {
-				$path   = explode( '/', $plugin );
-				$return = \WP_CLI::runcommand(
-					sprintf( 'plugin deactivate %s --url=%s%s', $path[0], $site->domain, $site->path ),
-					array( 'return' => true, 'exit_error' => false )
-				);
+		foreach ( $plugins[$key] as $plugin ) {
+			$path   = explode( '/', $plugin );
+			$return = \WP_CLI::runcommand(
+				sprintf( 'plugin %s %s --url=%s%s', $action, $path[0], $site->domain, $site->path ),
+				array( 'return' => true, 'exit_error' => false )
+			);
 
-				\WP_CLI::log( sprintf( '%s : %s', $path[0], $return ) );
+			\WP_CLI::log( sprintf( '%s : %s', $path[0], $return ) );
 
-				/** This actions are documented in wp-admin/includes/plugin.php */
-				do_action( 'deactivate_plugin', $plugin, false );
-				do_action( 'deactivate_' . $plugin, false );
-				do_action( 'deactivated_plugin', $plugin, false );
-			}
+			/** This actions are documented in wp-admin/includes/plugin.php */
+			do_action( $action . '_plugin', $plugin, false );
+			do_action( $action . '_' . $plugin, false );
+			do_action( $action . 'ed_plugin', $plugin, false );
 		}
 	}
 }
