@@ -33,13 +33,12 @@ class Main_CLI extends \WP_CLI_Command {
 
 		if ( empty( $sites ) ) {
 			\WP_CLI::error( 'Not sites.' );
-
 			return;
 		}
 
 		\WP_Cli::log( 'Starting theme\'s plugins management.' );
 		foreach ( $sites as $site ) {
-			\WP_CLI::runcommand( 'plugins manage_single --url=' . $site->domain . $site->path, array( 'return' => true ) );
+			\WP_CLI::log( \WP_CLI::runcommand( sprintf( 'plugins manage_single --url=%s%s', $site->domain, $site->path ), array( 'return' => true ) ) );
 		}
 
 		\WP_CLI::success( sprintf( 'Management of %s site(s) is finish !', $found_sites ) );
@@ -67,15 +66,35 @@ class Main_CLI extends \WP_CLI_Command {
 
 		if ( isset( $plugins['force_activation'] ) && ! empty( $plugins['force_activation'] ) ) {
 			foreach ( $plugins['force_activation'] as $plugin ) {
-				$path = explode( $plugin, '/' );
-				\WP_CLI::runcommand( sprintf( 'plugin activate %s --url=%s%s%s', $path[0] ), array( 'return' => true ) );
+				$path   = explode( '/', $plugin );
+				$return = \WP_CLI::runcommand(
+					sprintf( 'plugin activate %s --url=%s%s', $path[0], $site->domain, $site->path ),
+					array( 'return' => true, 'exit_error' => false )
+				);
+
+				\WP_CLI::log( sprintf( '%s : %s', $path[0], $return ) );
+
+				/** This actions are documented in wp-admin/includes/plugin.php */
+				do_action( 'activate_plugin', $plugin, false );
+				do_action( 'activate_' . $plugin, false );
+				do_action( 'activated_plugin', $plugin, false );
 			}
 		}
 
 		if ( isset( $plugins['force_deactivation'] ) && ! empty( $plugins['force_deactivation'] ) ) {
 			foreach ( $plugins['force_deactivation'] as $plugin ) {
-				$path = explode( $plugin, '/' );
-				\WP_CLI::runcommand( sprintf( 'plugin deactivate %s --url=%s%s', $path[0] ), array( 'return' => true ) );
+				$path   = explode( '/', $plugin );
+				$return = \WP_CLI::runcommand(
+					sprintf( 'plugin deactivate %s --url=%s%s', $path[0], $site->domain, $site->path ),
+					array( 'return' => true, 'exit_error' => false )
+				);
+
+				\WP_CLI::log( sprintf( '%s : %s', $path[0], $return ) );
+
+				/** This actions are documented in wp-admin/includes/plugin.php */
+				do_action( 'deactivate_plugin', $plugin, false );
+				do_action( 'deactivate_' . $plugin, false );
+				do_action( 'deactivated_plugin', $plugin, false );
 			}
 		}
 	}
