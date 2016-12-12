@@ -126,6 +126,12 @@ class Main {
 
 		update_option( 'active_plugins', $active_plugins );
 
+		/**
+		 * Force activation to exec activation hooks
+		 * Not too greedy, as it checks option before activation
+		 */
+		activate_plugins( $active_plugins );
+
 		if ( ! empty( $log_infos ) && ! defined( 'WP_CLI' ) ) {
 			self::$logs_messages = $log_infos;
 		}
