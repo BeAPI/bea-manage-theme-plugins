@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-02 16:00+0000\n"
+"POT-Creation-Date: 2016-12-12 18:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Maxime CULEA <mculea@beapi.fr>\n"
 "Language-Team: \n"
@@ -26,19 +26,17 @@ msgid ""
 "server is currently running PHP version %s."
 msgstr ""
 
-#: classes/admin/main.php:156
+#: classes/admin/main.php:170
 #, php-format
-msgid ""
-"The plugin %s is not installed in your WordPress instance and is required to "
-"use this theme."
+msgid "The plugin %s is not installed in your WordPress instance."
 msgstr ""
 
-#: classes/admin/main.php:163
+#: classes/admin/main.php:177
 #, php-format
 msgid "The plugin %s should be deactivated with this theme."
 msgstr ""
 
-#: classes/admin/main.php:170
+#: classes/admin/main.php:184
 #, php-format
 msgid "The plugin %s should be activated with this theme."
 msgstr ""

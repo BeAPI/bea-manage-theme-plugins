@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BEA - Manage theme plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-02 16:01+0000\n"
-"PO-Revision-Date: 2016-12-02 16:05+0000\n"
-"Last-Translator: Maxime CULEA <mculea@beapi.fr>\n"
+"POT-Creation-Date: 2016-12-12 18:15+0000\n"
+"PO-Revision-Date: 2016-12-12 18:16+0000\n"
+"Last-Translator: beapi <mculea@beapi.fr>\n"
 "Language-Team: French (France)\n"
 "Language: fr-FR\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
@@ -14,39 +14,46 @@ msgstr ""
 "X-Generator: Loco - https://localise.biz/"
 
 #: compat.php:22
-#, c-format
+#, php-format
 msgid "Plugin Boilerplate requires PHP version %s or greater to be activated."
-msgstr ""
+msgstr "Plugin Boilerplate requires PHP version %s or greater to be activated."
 
 #: compat.php:37
-#, c-format
+#, php-format
 msgid ""
 "Plugin Boilerplate require PHP version %s or greater to be activated. Your "
 "server is currently running PHP version %s."
 msgstr ""
-
-#: classes/admin/main.php:156
-#, c-format
-msgid ""
-"The plugin %s is not installed in your WordPress instance and is required to "
-"use this theme."
-msgstr ""
-"L'extension %s n'est pas du tout installée dans votre WordPress et est "
-"requise pour l'utilisation de ce thème. "
-
-#: classes/admin/main.php:163
-#, c-format
-msgid "The plugin %s should be deactivated with this theme."
-msgstr "L'extension %s doit être désactivée avec ce thème."
+"Plugin Boilerplate require PHP version %s or greater to be activated. Your "
+"server is currently running PHP version %s."
 
 #: classes/admin/main.php:170
-#, c-format
-msgid "The plugin %s should be activated with this theme."
-msgstr "L'extension %s doit être activé pour ce thème."
+#, php-format
+msgid "The plugin %s is not installed in your WordPress instance."
+msgstr "L'extension %s n'est pas installé dans votre instance WordPress."
 
 #. Name of the plugin
 msgid "BEA - Manage theme plugins"
-msgstr ""
+msgstr "BEA - Manage theme plugins"
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://beapi.fr/"
+msgstr "https://beapi.fr/"
+
+#. Author of the plugin
+msgid "BE API Technical team"
+msgstr "BE API Technical team"
+
+#: classes/admin/main.php:177
+#, php-format
+msgid "The plugin %s should be deactivated with this theme."
+msgstr "L'extension %s doit être désactivée avec ce thème."
+
+#: classes/admin/main.php:184
+#, php-format
+msgid "The plugin %s should be activated with this theme."
+msgstr "L'extension %s doit être activé pour ce thème."
 
 #. Description of the plugin
 msgid ""
@@ -55,12 +62,3 @@ msgid ""
 msgstr ""
 "Une extension pour développeur qui permet de gérer les dépendances des "
 "extensions du thème en forçant ou suggérant l'activation ou la désactivation."
-
-#. URI of the plugin
-#. Author URI of the plugin
-msgid "https://beapi.fr/"
-msgstr ""
-
-#. Author of the plugin
-msgid "BE API Technical team"
-msgstr ""

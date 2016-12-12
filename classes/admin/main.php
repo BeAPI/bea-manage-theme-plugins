@@ -167,7 +167,7 @@ class Main {
 		// Display errors with required plugins that are not installed
 		if ( isset( self::$logs_messages['doesntexists'] ) && is_array( self::$logs_messages['doesntexists'] ) ) {
 			foreach ( self::$logs_messages['doesntexists'] as $message ) {
-				echo '<div class="error"><p>' . sprintf( __( 'The plugin %s is not installed in your WordPress instance and is required to use this theme.', 'bea-manage-theme-plugins' ), '<strong>' . $message . '</strong>' ) . '</p></div>';
+				echo '<div class="error"><p>' . sprintf( __( 'The plugin %s is not installed in your WordPress instance.', 'bea-manage-theme-plugins' ), '<strong>' . $message . '</strong>' ) . '</p></div>';
 			}
 		}
 
