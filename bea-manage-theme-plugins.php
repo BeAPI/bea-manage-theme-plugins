@@ -73,3 +73,7 @@ function init_bea_manage_theme_plugins_plugin() {
 		\BEA\Manage_Theme_Plugins\Admin\Main::get_instance();
 	}
 }
+
+if ( defined( 'WP_CLI' ) ) {
+	\WP_CLI::add_command( 'plugins', 'BEA\Manage_Theme_Plugins\Admin\Main_CLI' );
+}
