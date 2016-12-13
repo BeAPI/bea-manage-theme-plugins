@@ -83,6 +83,11 @@ Will exec on all sites, the theme's plugins management.
 
 # Changelog ##
 
+## 1.1.1 / 1.1.2 - 13 Dec 2016
+* Fix multiple wp-cli call.
+* Refactoring & reformatting.
+* More wp-cli messages (logs / success).
+
 ## 1.1.0 - 12 Dec 2016
 * Add wp cli to single or multiple management.
 * Update WP warnings messages.
