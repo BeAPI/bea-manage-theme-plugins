@@ -18,7 +18,7 @@ class Main_CLI extends \WP_CLI_Command {
 		global $wp_version;
 
 		// Default
-		$sites       = array();
+		$sites       = [];
 		$found_sites = 0;
 
 		if ( version_compare( $wp_version, '4.6', '>=' ) && class_exists( 'WP_Site_Query' ) ) {
@@ -38,7 +38,7 @@ class Main_CLI extends \WP_CLI_Command {
 
 		\WP_CLI::log( 'Starting theme\'s plugins management.' );
 		foreach ( $sites as $site ) {
-			\WP_CLI::log( \WP_CLI::runcommand( sprintf( 'plugins manage_single --url=%s%s', $site->domain, $site->path ), array( 'return' => true ) ) );
+			\WP_CLI::log( \WP_CLI::runcommand( sprintf( 'plugins manage_single --url=%s%s', $site->domain, $site->path ), [ 'return' => true, 'exit_error' => false ] ) );
 		}
 
 		\WP_CLI::success( sprintf( 'Management of %s site(s) is finish !', $found_sites ) );
@@ -87,7 +87,7 @@ class Main_CLI extends \WP_CLI_Command {
 			$path   = explode( '/', $plugin );
 			$return = \WP_CLI::runcommand(
 				sprintf( 'plugin %s %s --url=%s%s', $action, $path[0], $site->domain, $site->path ),
-				array( 'return' => true, 'exit_error' => false )
+				[ 'return' => true, 'exit_error' => false ]
 			);
 
 			\WP_CLI::log( sprintf( '%s : %s', $path[0], $return ) );

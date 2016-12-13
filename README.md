@@ -23,12 +23,12 @@ In your theme's functions.php file, hook on `bea\manage_theme_plugins\theme_plug
 
 Here is an example of how theme's plugins array is formatted :
 ```
-$theme_plugins = array(
-     $action1 = array(
+$theme_plugins = [
+     $action1 = [
          plugin-folder1/plugin1.php,
          plugin-folder2/plugin2.php
-     )
-);
+     ]
+];
 ```
 
 Available actions are :
@@ -46,21 +46,21 @@ Available actions are :
  */
 add_filter( 'bea\manage_theme_plugins\theme_plugins', 'manage_my_theme_plugins' );
 function manage_my_theme_plugins( $plugins ) {
-	$plugins = array(
-		'force_activation'     => array(
+	$plugins = [
+		'force_activation'     => [
 			'advanced-custom-fields-pro/acf.php',
 			'wp-thumb/wpthumb.php',
-		),
-		'suggest_activation'   => array(
+		],
+		'suggest_activation'   => [
 			'wp-pagenavi/wp-pagenavi.php',
 			'wordpress-seo/wp-seo.php'
-		),
-		'force_deactivation'     => array(
+		],
+		'force_deactivation'     => [
 			'image-widget/image-widget.php'
-		),
-		'suggest_deactivation' => array(
+		],
+		'suggest_deactivation' => [
 			'lazy-load/lazy-load.php'
-		)
+		]
 	);
 
 	return $plugins;

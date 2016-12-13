@@ -18,7 +18,7 @@ class Main {
 	use Singleton;
 
 	protected function init() {
-		add_action( 'init', array( $this, 'init_translations' ) );
+		add_action( 'init', [ $this, 'init_translations' ] );
 	}
 
 	/**

@@ -14,11 +14,11 @@ class Main {
 	 */
 	use Singleton;
 
-	static $logs_messages = array();
+	static $logs_messages = [];
 
 	public function __construct() {
-		add_action( 'admin_init', array( $this, 'check_plugins' ) );
-		add_action( 'admin_notices', array( $this, 'show_notices' ) );
+		add_action( 'admin_init', [ $this, 'check_plugins' ] );
+		add_action( 'admin_notices', [ $this, 'show_notices' ] );
 	}
 
 	/**
@@ -37,7 +37,7 @@ class Main {
 
 		// Get only active plugins
 		$active_plugins = get_option( 'active_plugins' );
-		$active_plugins = empty( $active_plugins ) || ! is_array( $active_plugins ) ? array() : $active_plugins;
+		$active_plugins = empty( $active_plugins ) || ! is_array( $active_plugins ) ? [] : $active_plugins;
 
 		/**
 		 * Get all theme's plugin to be managed.
@@ -47,12 +47,12 @@ class Main {
 		 * @return array $theme_plugins List of actions to perform and corresponding wanted plugins.
 		 *
 		 * Here is an example of how is array formatted :
-		 * $theme_plugins = array(
-		 *      $action1 = array(
+		 * $theme_plugins = [
+		 *      $action1 = [
 		 *          plugin-folder1/plugin1.php,
 		 *          plugin-folder2/plugin2.php
-		 *      )
-		 * );
+		 *      ]
+		 * ];
 		 *
 		 * Actions are :
 		 *  - force_activation
@@ -60,9 +60,9 @@ class Main {
 		 *  - force_deactivation
 		 *  - suggest_deactivation
 		 */
-		$theme_plugins = apply_filters( 'bea\manage_theme_plugins\theme_plugins', array() );
+		$theme_plugins = apply_filters( 'bea\manage_theme_plugins\theme_plugins', [] );
 		if ( ! is_array( $theme_plugins ) || empty( $theme_plugins ) ) {
-			return array();
+			return [];
 		}
 
 		// Early exit to return to wp cli all wanted plugins
@@ -71,13 +71,13 @@ class Main {
 		}
 
 		// Init the return array (the array with all infos about plugins enabled or disabled by the function)
-		$log_infos = array(
-			'force_activation'     => array(),
-			'force_deactivation'   => array(),
-			'suggest_activation'   => array(),
-			'suggest_deactivation' => array(),
-			'doesntexists'         => array(),
-		);
+		$log_infos = [
+			'force_activation'     => [],
+			'force_deactivation'   => [],
+			'suggest_activation'   => [],
+			'suggest_deactivation' => [],
+			'doesntexists'         => [],
+		];
 
 		// Scan plugins
 		foreach ( $theme_plugins as $action => $plugins ) {
