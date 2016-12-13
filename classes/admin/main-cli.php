@@ -66,6 +66,8 @@ class Main_CLI extends \WP_CLI_Command {
 
 		self::activate_deactivate( 'activate', 'force_activation', $plugins, $site );
 		self::activate_deactivate( 'deactivate', 'force_deactivation', $plugins, $site );
+
+		\WP_CLI::success( sprintf( '%s%s theme\'s plugins managed !', $site->domain, $site->path ) );
 	}
 
 	/**
@@ -91,6 +93,8 @@ class Main_CLI extends \WP_CLI_Command {
 			);
 
 			\WP_CLI::log( sprintf( '%s : %s', $path[0], $return ) );
+
+			// TODO : Check for success, before doing actions !
 
 			/** This actions are documented in wp-admin/includes/plugin.php */
 			do_action( $action . '_plugin', $plugin, false );
