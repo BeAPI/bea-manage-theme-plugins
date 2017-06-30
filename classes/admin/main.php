@@ -83,7 +83,7 @@ class Main {
 		foreach ( $theme_plugins as $action => $plugins ) {
 			foreach ( $plugins as $plugin_slug ) {
 				// Does the plugin exists in plugins folder ?
-				if ( ! is_file( WP_PLUGIN_DIR . '/' . $plugin_slug ) || ! isset( $installed_plugins[ $plugin_slug ] ) ) {
+				if ( ! is_file( WP_PLUGIN_DIR . '/' . $plugin_slug ) || ! is_readable( WP_PLUGIN_DIR . '/' . $plugin_slug ) || ! isset( $installed_plugins[ $plugin_slug ] ) ) {
 					$log_infos['doesntexists'][] = $plugin_slug;
 					continue;
 				}
