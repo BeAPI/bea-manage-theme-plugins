@@ -128,6 +128,17 @@ class Main {
 				$log_infos[ $action ][] = $plugin_slug;
 			}
 		}
+		
+		/**
+		* Remove all non-existent resilient plugins
+		* Avoid the errors on fclose/fopen with activate_plugins
+		*
+		**/
+		foreach ( $active_plugins as $key => $plugin ) {
+			if( ! is_readable( WP_PLUGIN_DIR . '/' . $plugin ) ) {
+				unset( $active_plugins[$key] );
+			}
+		}
 
 		update_option( 'active_plugins', $active_plugins );
 
