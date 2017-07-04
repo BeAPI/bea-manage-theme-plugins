@@ -130,10 +130,11 @@ class Main {
 		}
 		
 		/**
-		* Remove all non-existent resilient plugins
-		* Avoid the errors on fclose/fopen with activate_plugins
-		*
-		**/
+		 * As some plugins are resilient, remove all non-existent plugins
+		 * Avoid the errors on fclose / fopen with activate_plugins
+		 *
+		 * @author Nicolas Juen
+		 */
 		foreach ( $active_plugins as $key => $plugin ) {
 			if( ! is_readable( WP_PLUGIN_DIR . '/' . $plugin ) ) {
 				unset( $active_plugins[$key] );
