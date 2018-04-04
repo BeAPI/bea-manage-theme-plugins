@@ -24,10 +24,8 @@ In your theme's functions.php file, hook on `bea\manage_theme_plugins\theme_plug
 Here is an example of how theme's plugins array is formatted :
 ```
 $theme_plugins = [
-     $action1 = [
-         plugin-folder1/plugin1.php,
-         plugin-folder2/plugin2.php
-     ]
+    plugin-folder1 => $action1,
+    plugin-file2.php => $action1
 ];
 ```
 
@@ -46,22 +44,10 @@ Available actions are :
  */
 add_filter( 'bea\manage_theme_plugins\theme_plugins', 'manage_my_theme_plugins' );
 function manage_my_theme_plugins( $plugins ) {
-	$plugins = [
-		'force_activation'     => [
-			'advanced-custom-fields-pro/acf.php',
-			'wp-thumb/wpthumb.php',
-		],
-		'suggest_activation'   => [
-			'wp-pagenavi/wp-pagenavi.php',
-			'wordpress-seo/wp-seo.php'
-		],
-		'force_deactivation'     => [
-			'image-widget/image-widget.php'
-		],
-		'suggest_deactivation' => [
-			'lazy-load/lazy-load.php'
-		]
-	);
+	$theme_plugins = [
+    	'plugin-folder1' => 'force_activation',
+    	'plugin2' => 'force_deactivation'
+    ];
 
 	return $plugins;
 }
@@ -79,20 +65,33 @@ Will exec only on given site, the theme's plugins management.
 
 Will exec on all sites, the theme's plugins management.
 
-`wp plugins manage_all`
+`wp site list --fields=url \
+  | xargs -I % wp plugins manage_single --url=% `
+
+The old command "manage_all" is deprecated/removed.
 
 # Changelog ##
 
+## 2.0 - 04 Apr 2018
+
+* Refactoring plugin, use new plugin array structure
+* Remove "manage_all" WP-Cli command
+* Allow call plugin by short name, eg: advanced-custom-fields (without end part)
+* Remove some plugin actions from Plugins list
+
 ## 1.1.1 / 1.1.2 - 13 Dec 2016
+
 * Fix multiple wp-cli call.
 * Refactoring & reformatting.
 * More wp-cli messages (logs / success).
 
 ## 1.1.0 - 12 Dec 2016
+
 * Add wp cli to single or multiple management.
 * Update WP warnings messages.
 
 ## 1.0.1 - 02 Dec 2016
+
 * Implement main methods to register/deregister theme's plugins depending in if it's forced or suggested.
 * Update readme with usage & example.
 * Add plugin's .pot.
@@ -100,4 +99,5 @@ Will exec on all sites, the theme's plugins management.
 * Add composer.json !
 
 ## 1.0.0 - 02 Dec 2016
+
 * Init with boilerplate 2.1.6
