@@ -16,13 +16,13 @@ msgstr ""
 
 #: compat.php:22
 #, php-format
-msgid "Plugin Boilerplate requires PHP version %s or greater to be activated."
+msgid "Plugin BEA - Manage theme plugins requires PHP version %s or greater to be activated."
 msgstr ""
 
 #: compat.php:37
 #, php-format
 msgid ""
-"Plugin Boilerplate require PHP version %s or greater to be activated. Your "
+"Plugin BEA - Manage theme plugins require PHP version %s or greater to be activated. Your "
 "server is currently running PHP version %s."
 msgstr ""
 
