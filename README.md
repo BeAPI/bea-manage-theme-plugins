@@ -59,18 +59,23 @@ function manage_my_theme_plugins( $plugins ) {
 
 Will exec only on given site, the theme's plugins management.
 
-`wp plugins manage_single --url={site_url}`
+`wp plugin theme_management --url={site_url}`
 
 ### All sites management
 
 Will exec on all sites, the theme's plugins management.
 
 `wp site list --fields=url \
-  | xargs -I % wp plugins manage_single --url=% `
+  | xargs -I % wp plugin theme_management --url=% `
 
-The old command "manage_all" is deprecated/removed.
+The old command "plugins manage_all" is deprecated/removed.
 
 # Changelog ##
+
+## 2.1 - 04 Apr 2018
+
+* Minor refactoring PHP comments (thanks @TweetPressFr)
+* Rename WP-CLI command from "plugins manage_single" to  "plugin theme_management" (issue #7)
 
 ## 2.0 - 04 Apr 2018
 

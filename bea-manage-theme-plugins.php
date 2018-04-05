@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: BEA - Manage theme plugins
- Version: 2.0
+ Version: 2.1
  Plugin URI: https://beapi.fr/
  Description: Dev oriented plugin to manage theme's plugins (activation and deactivation) by forcing or suggesting it.
  Author: BE API Technical team
@@ -11,7 +11,7 @@
 
  ----
 
- Copyright 2016 BE API Technical team (human@beapi.fr)
+ Copyright 2016-2018 BE API Technical team (human@beapi.fr)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants
-define( 'BEA_MANAGE_THEME_PLUGINS_VERSION', '2.0' );
+define( 'BEA_MANAGE_THEME_PLUGINS_VERSION', '2.1' );
 define( 'BEA_MANAGE_THEME_PLUGINS_MIN_PHP_VERSION', '5.4' );
 
 // Plugin URL and PATH
@@ -73,5 +73,5 @@ function init_bea_manage_theme_plugins_plugin() {
 }
 
 if ( defined( 'WP_CLI' ) ) {
-	\WP_CLI::add_command( 'plugins', 'BEA\Manage_Theme_Plugins\Admin\Main_CLI' );
+	\WP_CLI::add_command( 'plugin theme_management', 'BEA\Manage_Theme_Plugins\Admin\Main_CLI' );
 }

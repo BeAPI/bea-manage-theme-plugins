@@ -1,16 +1,11 @@
 <?php Namespace BEA\Manage_Theme_Plugins\Admin;
 
 class Main_CLI extends \WP_CLI_Command {
-
-	public function manage_all() {
-		\WP_CLI::success( 'Deprecated' );
-	}
-
 	/**
 	 * Activate/deactivate for one site, theme's dependencies.
 	 *
 	 * ## EXAMPLES
-	 * wp plugins manage_single --url=
+	 * wp plugin theme_management --url=
 	 *
 	 * @since 1.1.0
 	 *
@@ -18,7 +13,7 @@ class Main_CLI extends \WP_CLI_Command {
 	 *
 	 * @synopsis
 	 */
-	public function manage_single() {
+	public function theme_management() {
 		$site_id = get_current_blog_id();
 		$site    = \WP_Site::get_instance( $site_id );
 
